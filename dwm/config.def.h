@@ -67,7 +67,16 @@ static const char *shutdowncmd[] = { "systemctl", "poweroff", "-i", NULL };
 static const char *flameshotcmd[] = { "flameshot", "gui", NULL };
 
 /* Keyboard bind */
-static const char *changekeyboardlayoutcmd[] = { "sh", "-c", "setxkbmap -query | grep -q 'layout:.*pt' && setxkbmap us -option caps:escape,ctrl:ralt_rctrl || setxkbmap pt -option caps:escape,ctrl:ralt_rctrl", NULL };
+static const char *changekeyboardlayoutcmd[] = { 
+    "sh", "-c", 
+    "setxkbmap -query | grep -q 'layout:.*pt' "
+    "&& setxkbmap us -option caps:escape,ctrl:ralt_rctrl "
+    "|| setxkbmap pt -option caps:escape,ctrl:ralt_rctrl; "
+    "xmodmap -e 'remove control = Control_R'; "
+    "xmodmap -e 'keycode 105 = BackSpace'; "
+    "xmodmap -e 'add control = Control_R'", 
+    NULL 
+};
 
 
 /* Volume commands */
