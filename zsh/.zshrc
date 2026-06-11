@@ -162,11 +162,13 @@ function mkcd() {
     mkdir -p "$1" && cd "$1"
 }
 
+export PATH="$HOME/.local/bin:$PATH"
+export BROWSER=firefox
+
 alias l='ls --group-directories-first --color=auto -lah'
 alias venv='source /home/coutinho/venv/bin/activate'
 alias shigarra='/home/coutinho/go/bin/shigarra'
 alias nervctf='/home/coutinho/tools/NervCTF/nervctf-linux-x86_64-static'
 
 fastfetch
-export PATH="$HOME/.local/bin:$PATH"
 
