@@ -36,6 +36,13 @@ xmodmap -e "keycode 105 = BackSpace"
 # re-attach the Control modifier
 xmodmap -e "add control = Control_R"
 
+# map ISO <> key (left of Left Shift) to Shift
+xmodmap -e "keycode 94 = Shift_L NoSymbol Shift_L"
+xmodmap -e "add shift = Shift_L"
+
+# map physical Backspace to backslash/pipe
+xmodmap -e "keycode 22 = backslash bar backslash bar"
+
 
 # merge high dpi
 xrdb -merge ~/.Xresources
@@ -48,6 +55,15 @@ slstatus &
 
 # stop screen dimming
 xset s off -dpms
+
+
+# Wrap PipeWire and DWM inside a single, unified D-Bus session
+exec dbus-run-session sh -c "
+    pipewire &
+    wireplumber &
+    pipewire-pulse &
+    exec dwm
+"
 
 exec dwm
 ```
