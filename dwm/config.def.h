@@ -63,19 +63,23 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *slockcmd[] = { "slock", NULL };
-static const char *shutdowncmd[] = { "systemctl", "poweroff", "-i", NULL };
-static const char *flameshotcmd[] = { "flameshot", "gui", NULL };
+static const char *shutdowncmd[] = { "loginctl", "poweroff", NULL };
+static const char *flameshotcmd[] = { "sh", "-c", "flameshot gui --raw | xclip -selection clipboard -t image/png", NULL };
 
 /* Keyboard bind */
-static const char *changekeyboardlayoutcmd[] = { 
-    "sh", "-c", 
+static const char *changekeyboardlayoutcmd[] = {
+    "sh", "-c",
     "setxkbmap -query | grep -q 'layout:.*pt' "
     "&& setxkbmap us -option caps:escape,ctrl:ralt_rctrl "
     "|| setxkbmap pt -option caps:escape,ctrl:ralt_rctrl; "
     "xmodmap -e 'remove control = Control_R'; "
     "xmodmap -e 'keycode 105 = BackSpace'; "
-    "xmodmap -e 'add control = Control_R'", 
-    NULL 
+    "xmodmap -e 'add control = Control_R'; "
+    "xmodmap -e 'keycode 94 = Shift_L NoSymbol Shift_L'; "
+    "xmodmap -e 'add shift = Shift_L'; "
+    "xmodmap -e 'keycode 22 = backslash bar backslash bar'; "
+    "xset r rate 200 45",
+    NULL
 };
 
 
