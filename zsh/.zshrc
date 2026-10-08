@@ -10,7 +10,7 @@ setopt NO_BEEP
 bindkey -v
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '/home/tsyr/.zshrc'
+zstyle :compinstall filename '/home/coutinho/.zshrc'
 zstyle ':completion:*' menu select # for searching in the comletion with tab
 
 autoload -Uz compinit promptinit
@@ -162,7 +162,7 @@ function mkcd() {
     mkdir -p "$1" && cd "$1"
 }
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"
 export BROWSER=firefox
 
 alias l='ls --group-directories-first --color=auto -lah'
